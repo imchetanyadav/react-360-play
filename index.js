@@ -5,7 +5,9 @@ import {
   Text,
   View,
   VrButton,
-  Environment
+  Environment,
+  NativeModules,
+  staticResourceURL
 } from 'react-360';
 
 export default class Hello360 extends React.Component {
@@ -17,6 +19,14 @@ export default class Hello360 extends React.Component {
   };
   _changeBackground = () => {
     Environment.setBackgroundImage('static_assets/a2.jpg');
+  }
+  _changeBackgroundToVideo = () => {
+    const {VideoModule} = NativeModules;  
+    VideoModule.createPlayer('myplayer');
+    VideoModule.play('myplayer', {
+      source: {url: 'static_assets/v1.mp4'}
+    });
+    Environment.setBackgroundVideo('myplayer');    
   }
   render() {
     return (
@@ -37,6 +47,13 @@ export default class Hello360 extends React.Component {
             style={styles.greetingBox}>
             <Text style={styles.greeting}>
               Change Background
+            </Text>
+          </VrButton>
+          <VrButton
+            onClick={this._changeBackgroundToVideo}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Change Background to video
             </Text>
           </VrButton>
         </View>
