@@ -4,9 +4,16 @@ import {
   StyleSheet,
   Text,
   View,
+  VrButton
 } from 'react-360';
 
 export default class Hello360 extends React.Component {
+  state = {
+    count: 0,
+  };
+  _incrementCount = () => {
+    this.setState({count: this.state.count + 1});
+  };  
   render() {
     return (
       <View style={styles.panel}>
@@ -14,6 +21,13 @@ export default class Hello360 extends React.Component {
           <Text style={styles.greeting}>
             Welcome to React 360
           </Text>
+          <VrButton
+            onClick={this._incrementCount}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              {`Count: ${this.state.count}`}
+            </Text>
+          </VrButton>
         </View>
       </View>
     );
