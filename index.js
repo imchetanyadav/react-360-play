@@ -6,9 +6,14 @@ import {
   View,
   VrButton,
   Environment,
-  NativeModules,
-  staticResourceURL
+  NativeModules
 } from 'react-360';
+
+const HorizontalPanel = () => (
+  <View style={styles.panel}>
+    <Text style={styles.panelText}>{'Follows Horizontally'}</Text>
+  </View>
+);
 
 export default class Hello360 extends React.Component {
   state = {
@@ -65,11 +70,16 @@ export default class Hello360 extends React.Component {
 const styles = StyleSheet.create({
   panel: {
     // Fill the entire surface
-    width: 1000,
-    height: 600,
+    // width: 1000,
+    // height: 600,
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  panelText: {
+    color: '#000000',
+    fontSize: 30,
+    textAlign: 'center',
   },
   greetingBox: {
     padding: 20,
@@ -83,3 +93,4 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('Hello360', () => Hello360);
+AppRegistry.registerComponent('HorizontalPanel', () => HorizontalPanel);
