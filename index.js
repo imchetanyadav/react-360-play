@@ -18,12 +18,16 @@ const HorizontalPanel = () => (
 export default class Hello360 extends React.Component {
   state = {
     count: 0,
+    index: 0
   };
   _incrementCount = () => {
     this.setState({count: this.state.count + 1});
   };
   _changeBackground = () => {
-    Environment.setBackgroundImage('static_assets/a2.jpg');
+    this.setState((prevState) => ({index: prevState.index + 1}));
+    if(this.state.index==this.props.photos.length-1)
+      this.setState({ index: 0 });
+    Environment.setBackgroundImage(this.props.photos[this.state.index].uri);
   }
   _changeBackgroundToVideo = () => {
     const {VideoModule} = NativeModules;  
