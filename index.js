@@ -4,7 +4,8 @@ import {
   StyleSheet,
   Text,
   View,
-  VrButton
+  VrButton,
+  Environment
 } from 'react-360';
 
 export default class Hello360 extends React.Component {
@@ -13,7 +14,10 @@ export default class Hello360 extends React.Component {
   };
   _incrementCount = () => {
     this.setState({count: this.state.count + 1});
-  };  
+  };
+  _changeBackground = () => {
+    Environment.setBackgroundImage('static_assets/a2.jpg');
+  }
   render() {
     return (
       <View style={styles.panel}>
@@ -26,6 +30,13 @@ export default class Hello360 extends React.Component {
             style={styles.greetingBox}>
             <Text style={styles.greeting}>
               {`Count: ${this.state.count}`}
+            </Text>
+          </VrButton>
+          <VrButton
+            onClick={this._changeBackground}
+            style={styles.greetingBox}>
+            <Text style={styles.greeting}>
+              Change Background
             </Text>
           </VrButton>
         </View>
