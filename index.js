@@ -1,4 +1,5 @@
 import React from 'react';
+import Entity from 'Entity';
 import {
   AppRegistry,
   StyleSheet,
@@ -6,7 +7,8 @@ import {
   View,
   VrButton,
   Environment,
-  NativeModules
+  NativeModules,
+  asset
 } from 'react-360';
 
 const HorizontalPanel = () => (
@@ -14,6 +16,10 @@ const HorizontalPanel = () => (
     <Text style={styles.panelText}>{'Follows Horizontally'}</Text>
   </View>
 );
+
+const My3DView = () => (
+  <Entity source={{obj: asset('o2.obj')}} />
+)
 
 export default class Hello360 extends React.Component {
   state = {
@@ -98,3 +104,4 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Hello360', () => Hello360);
 AppRegistry.registerComponent('HorizontalPanel', () => HorizontalPanel);
+AppRegistry.registerComponent('My3DView', () => My3DView);
