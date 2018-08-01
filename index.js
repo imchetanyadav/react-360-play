@@ -60,6 +60,7 @@ export default class HorizontalPanel extends React.Component {
           <Text style={styles.greeting}>
             Welcome to React 360
           </Text>
+          {this.state.index == 1 ? <Text style={styles.greeting}>Only appear on 2nd image</Text> : null} 
           <VrButton
             onClick={this._incrementCount}
             style={styles.greetingBox}>

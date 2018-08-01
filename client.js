@@ -35,6 +35,7 @@ function init(bundle, parent, options = {}) {
 
   // Load the initial environment
   r360.compositor.setBackground(r360.getAssetURL('a3.jpg'));
+  // r360._cameraPosition = [0, 3, 0]; 
 }
 
 window.React360 = {init};
