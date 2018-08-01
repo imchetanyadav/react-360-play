@@ -1,4 +1,5 @@
 import React from 'react';
+import Entity from 'Entity';
 import {
   AppRegistry,
   StyleSheet,
@@ -6,16 +7,31 @@ import {
   View,
   VrButton,
   Environment,
-  NativeModules
+  NativeModules,
+  asset,
+  Animated
 } from 'react-360';
 
-const HorizontalPanel = () => (
+const AnimatedEntity = Animated.createAnimatedComponent(Entity);
+
+const Hello360 = () => (
   <View style={styles.panel}>
     <Text style={styles.panelText}>{'Follows Horizontally'}</Text>
   </View>
 );
 
-export default class Hello360 extends React.Component {
+const My3DView = () => {
+  rotation = new Animated.Value(0);
+  Animated.timing(this.rotation, {toValue: 360, duration: 20000}).start();
+  return (
+    <AnimatedEntity
+      style={{transform: [{rotateY: this.rotation}]}}
+      source={{obj: asset('o1.obj'), mtl: asset('m1.mtl')}}
+    />
+  )
+}
+
+export default class HorizontalPanel extends React.Component {
   state = {
     count: 0,
     index: 0
@@ -98,3 +114,4 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('Hello360', () => Hello360);
 AppRegistry.registerComponent('HorizontalPanel', () => HorizontalPanel);
+AppRegistry.registerComponent('My3DView', () => My3DView);
