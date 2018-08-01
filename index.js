@@ -8,20 +8,30 @@ import {
   VrButton,
   Environment,
   NativeModules,
-  asset
+  asset,
+  Animated
 } from 'react-360';
 
-const HorizontalPanel = () => (
+const AnimatedEntity = Animated.createAnimatedComponent(Entity);
+
+const Hello360 = () => (
   <View style={styles.panel}>
     <Text style={styles.panelText}>{'Follows Horizontally'}</Text>
   </View>
 );
 
-const My3DView = () => (
-  <Entity source={{obj: asset('o2.obj')}} />
-)
+const My3DView = () => {
+  rotation = new Animated.Value(0);
+  Animated.timing(this.rotation, {toValue: 360, duration: 20000}).start();
+  return (
+    <AnimatedEntity
+      style={{transform: [{rotateY: this.rotation}]}}
+      source={{obj: asset('o1.obj'), mtl: asset('m1.mtl')}}
+    />
+  )
+}
 
-export default class Hello360 extends React.Component {
+export default class HorizontalPanel extends React.Component {
   state = {
     count: 0,
     index: 0
